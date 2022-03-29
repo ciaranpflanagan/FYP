@@ -1,7 +1,7 @@
 <template>
     <div class="card">
         <div class="card-body">
-            <form action="">
+            <form action="" v-on:submit.prevent>
                 <div class="row">
                     <div class="col-md-2 offset-md-1">
                         <div class="form-group mb-4">
@@ -91,7 +91,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-6 offset-md-3">
-                        <button @click="submit()" type="submit" class="btn btn-primary" style="width: 100%;">Submit</button>
+                        <button @click="submit()" type="submit" class="btn btn-primary" style="width: 100%;" >Submit</button>
                     </div>
                 </div>
             </form>
@@ -107,7 +107,7 @@ export default {
             prep: 'ploughed',
             pressure: 'high',
             moisture: 'high',
-            covercrop: 'none',
+            covercrop: 'no',
             traffic: 'high'
         }
     },

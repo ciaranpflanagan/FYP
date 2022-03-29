@@ -13,10 +13,17 @@ interface params {
 export const actions: ActionTree<ModelState, RootState> = {
     loadTreatments ({ commit }, payload: params): any {
         console.log('payload', payload);
+        const formData = new FormData();
+
+        formData.append('prep', payload.prep);
+        formData.append('pressure', payload.pressure);
+        formData.append('moisture', payload.moisture);
+        formData.append('covercrop', payload.covercrop);
+        formData.append('traffic', payload.traffic);
         
         return fetch('http://127.0.0.1:5001/treatments', {
             method: 'POST',
-            body: JSON.stringify(payload)
+            body: formData
         }).then(data => data.json()).then(data => {
             console.log('loadTreatments return', data);
             

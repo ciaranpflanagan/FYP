@@ -1,6 +1,6 @@
 <template>
     <div class="container-fluid">
-        Model Here
+        Linear Regression Model
 
         <section class="container">
             <ModelForm />

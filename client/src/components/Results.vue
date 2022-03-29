@@ -3,7 +3,7 @@
         <div class="card-body text-center">
             <div class="row">
                 <div class="col-md-6 results-text">
-                    <span class="var-name">Predicted Yield:</span> <span>{{ predicted_yield }}</span>
+                    <span class="var-name">Predicted Yield:</span> <span>{{ predicted_yield }} t/ac</span>
                 </div>
                 <div class="col-md-6 results-text">
                     <span class="var-name">Predicted Emergence:</span> <span>{{ predicted_emergence }}</span>
