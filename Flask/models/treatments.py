@@ -59,3 +59,8 @@ def regYield(data):
     reg = LinearRegression().fit(X_train, y_train)
 
     return reg.predict(data)
+
+def regEmergence(data):
+    reg = LinearRegression().fit(X_train, y_train)
+
+    return reg.predict(data)
