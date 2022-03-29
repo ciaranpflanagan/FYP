@@ -20,15 +20,19 @@ export default {
         /**
          * Returns predicted yield from models
          */
-        predicted_yield () {
-            return 0;
+        predicted_yield() {
+            let predictedYield = this.$store.state.models.predictedYield;
+
+            return (predictedYield === 0) ? 0 : predictedYield.toPrecision(6);
         },
 
         /**
          * Returns predicted emergence from models
          */
         predicted_emergence () {
-            return 0;
+            let emergence = this.$store.state.models.predictedEmergence;
+
+            return (emergence === 0) ? 0 : emergence.toPrecision(6);
         }
     }
 }
