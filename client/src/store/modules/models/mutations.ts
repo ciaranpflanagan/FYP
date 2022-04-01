@@ -10,5 +10,14 @@ export const mutations: MutationTree<ModelState> = {
     setTreatments(state, payload) {
         state.predictedYield = payload.yield;
         state.predictedEmergence = payload.emergence;
+    },
+
+    /**
+     * Sets the currently selected model
+     * @param state 
+     * @param payload 
+     */
+    updateSelectedModel(state, payload) {
+        state.model = payload
     }
 }

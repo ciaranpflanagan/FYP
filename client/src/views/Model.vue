@@ -3,6 +3,10 @@
         Linear Regression Model
 
         <section class="container">
+            <ModelSelect />
+        </section>
+
+        <section class="container">
             <ModelForm />
         </section>
 
@@ -13,12 +17,13 @@
 </template>
 
 <script>
+import ModelSelect from './../components/ModelSelect.vue'
 import ModelForm from './../components/ModelForm.vue'
 import Results from './../components/Results.vue'
 
 export default {
     name: 'Model',
-    components: { ModelForm, Results }
+    components: { ModelSelect, ModelForm, Results }
 }
 </script>
 
