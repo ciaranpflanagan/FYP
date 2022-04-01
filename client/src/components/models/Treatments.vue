@@ -2,6 +2,9 @@
     <div class="card">
         <div class="card-body">
             <form action="" v-on:submit.prevent>
+                <div class="row mb-2" style="text-align: center;">
+                    <h3>Soil Treatments</h3>
+                </div>
                 <div class="row">
                     <div class="col-md-2 offset-md-1">
                         <div class="form-group mb-4">
