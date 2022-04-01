@@ -80,12 +80,12 @@ export const actions: ActionTree<ModelState, RootState> = {
     loadBDMoisture ({ commit }, payload: bdMoistureParams): any {
         const formData = new FormData();
 
-        formData.append('lowMoisture', JSON.stringify(payload.low));
-        formData.append('midMoisture', JSON.stringify(payload.mid));
-        formData.append('highMoisture', JSON.stringify(payload.high));
-        formData.append('lowDensity', JSON.stringify(payload.low));
-        formData.append('midDensity', JSON.stringify(payload.mid));
-        formData.append('highDensity', JSON.stringify(payload.high));
+        formData.append('lowMoisture', JSON.stringify(payload.lowMoisture));
+        formData.append('midMoisture', JSON.stringify(payload.midMoisture));
+        formData.append('highMoisture', JSON.stringify(payload.highMoisture));
+        formData.append('lowDensity', JSON.stringify(payload.lowDensity));
+        formData.append('midDensity', JSON.stringify(payload.midDensity));
+        formData.append('highDensity', JSON.stringify(payload.highDensity));
         
         return fetch('http://127.0.0.1:5001/bd-moisture', {
             method: 'POST',
