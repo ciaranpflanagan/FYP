@@ -21,9 +21,9 @@ export default {
     data() {
         return {
             models: [
-                {id: 1, name: 'Bulk Density & Moisture', model: 'bd_moisture'},
+                {id: 1, name: 'Soil Treatments', model: 'treatments'},
                 {id: 2, name: 'Moisture Percentage', model: 'moisture_percentage'},
-                {id: 3, name: 'Soil Treatments', model: 'treatments'}
+                {id: 3, name: 'Bulk Density & Moisture', model: 'bd_moisture'}
             ]
         }
     },
