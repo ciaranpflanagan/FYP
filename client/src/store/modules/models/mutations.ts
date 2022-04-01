@@ -18,6 +18,10 @@ export const mutations: MutationTree<ModelState> = {
      * @param payload 
      */
     updateSelectedModel(state, payload) {
-        state.model = payload
+        state.model = payload; // Update model
+
+        // Resetting results when model changed
+        state.predictedYield = 0;
+        state.predictedEmergence = 0;
     }
 }
