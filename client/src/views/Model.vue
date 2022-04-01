@@ -7,7 +7,9 @@
         </section>
 
         <section class="container">
-            <ModelForm />
+            <BDMoisture v-if="model === 'bd_moisture'" />
+            <MoisturePercentage v-if="model === 'moisture_percentage'" />
+            <Treatments v-if="model === 'treatments'" />
         </section>
 
         <section class="container mt-4">
@@ -18,12 +20,22 @@
 
 <script>
 import ModelSelect from './../components/ModelSelect.vue'
-import ModelForm from './../components/ModelForm.vue'
+import BDMoisture from './../components/models/BDMoisture.vue'
+import MoisturePercentage from './../components/models/MoisturePercentage.vue'
+import Treatments from './../components/models/Treatments.vue'
 import Results from './../components/Results.vue'
 
 export default {
     name: 'Model',
-    components: { ModelSelect, ModelForm, Results }
+    components: { ModelSelect, BDMoisture, MoisturePercentage, Treatments, Results },
+    computed: {
+        /**
+         * Returns the current active model
+         */
+        model() {
+            return this.$store.state.models.model;
+        }
+    }
 }
 </script>
 

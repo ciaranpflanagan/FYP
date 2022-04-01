@@ -101,7 +101,7 @@
 
 <script>
 export default {
-    name: 'ModelForm',
+    name: 'Treatments',
     data() {
         return {
             prep: 'ploughed',
@@ -128,6 +128,6 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 
 </style>
