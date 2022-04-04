@@ -1,7 +1,5 @@
 <template>
-    <div class="container-fluid">
-        Linear Regression Model
-
+    <div class="container-fluid mt-4">
         <section class="container">
             <ModelSelect />
         </section>
