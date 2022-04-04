@@ -24,6 +24,7 @@ def soil_moisture():
 
     return "<p>Soil Moisture Endpoint</p>"
 
+# Endpoint for treatments model
 @app.route("/treatments", methods=['POST'])
 def treatments():
     inp = formatTreatmentsData(request);
@@ -40,3 +41,13 @@ def treatments():
     emergenceResult = regEmergence(np.array([inp]))
 
     return json.dumps({'yield': yieldResult[0], 'emergence': emergenceResult[0]})
+
+# Endpoint for moisture precentage model
+@app.route("/moisture-precentage", methods=['POST'])
+def moisturePrecentage():
+    return json.dumps({'yield': 0, 'emergence': 0})
+
+# Endpoint for bulk density model
+@app.route("/bd-moisture", methods=['POST'])
+def bulkDensityMoisture():
+    return json.dumps({'yield': 0, 'emergence': 0})
