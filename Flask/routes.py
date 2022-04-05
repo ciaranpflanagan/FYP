@@ -6,7 +6,7 @@ import json
 # Models
 from models.treatments import regEmergence, regYield
 
-from helpers.format import formatTreatmentsData
+from helpers.format import formatTreatmentsData, formatSecondTreatmentsData
 import numpy as np
 
 # Index
@@ -45,7 +45,12 @@ def treatments():
 @app.route("/treatments/compare", methods=['POST'])
 def treatmentsCompare():
     inp = formatTreatmentsData(request);
-    secondInp = formatTreatmentsData(request);
+    secondInp = formatSecondTreatmentsData(request);
+
+    print("inp")
+    print(inp)
+    print("secondInp")
+    print(secondInp)
 
     # Models
     yieldResult = regYield(np.array([inp]))
@@ -58,10 +63,12 @@ def treatmentsCompare():
         'model': 'treatments compare',
         'yield': {
             'result': yieldResult[0],
+            'result2': secondYieldResult[0],
             'difference': (((yieldResult[0] - secondYieldResult[0]) / yieldResult[0]) * 100)
         },
         'emergence': {
             'result': emergenceResult[0],
+            'result2': secondEmergenceResult[0],
             'difference': (((emergenceResult[0] - secondEmergenceResult[0]) / emergenceResult[0]) * 100)
         }
     })

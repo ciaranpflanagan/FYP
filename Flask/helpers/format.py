@@ -1,7 +1,9 @@
-def formatTreatmentsData(request):
+# Encode data
+def encodeData(data):
     inp = []
+
     # Prep
-    if (request.form.get('prep') == 'ploughed'):
+    if (data['prep'] == 'ploughed'):
         inp.append(1.0)
         inp.append(0.0)
     else:
@@ -9,7 +11,7 @@ def formatTreatmentsData(request):
         inp.append(1.0)
 
     # Pressure
-    if (request.form.get('pressure') == 'high'):
+    if (data['pressure'] == 'high'):
         inp.append(1.0)
         inp.append(0.0)
     else:
@@ -17,7 +19,7 @@ def formatTreatmentsData(request):
         inp.append(1.0)
 
     # Moisture
-    if (request.form.get('moisture') == 'high'):
+    if (data['moisture'] == 'high'):
         inp.append(1.0)
         inp.append(0.0)
     else:
@@ -25,7 +27,7 @@ def formatTreatmentsData(request):
         inp.append(1.0)
 
     # Covercrop
-    if (request.form.get('covercrop') == 'yes'):
+    if (data['covercrop'] == 'yes'):
         inp.append(1.0)
         inp.append(0.0)
     else:
@@ -33,7 +35,7 @@ def formatTreatmentsData(request):
         inp.append(1.0)
 
     # Traffic
-    if (request.form.get('traffic') == 'high'):
+    if (data['traffic'] == 'high'):
         inp.append(1.0)
         inp.append(0.0)
     else:
@@ -41,3 +43,29 @@ def formatTreatmentsData(request):
         inp.append(1.0)
 
     return inp
+
+# Format data for first model
+def formatTreatmentsData(request):
+    data = {
+        'prep': request.form.get('prep'),
+        'pressure': request.form.get('pressure'),
+        'moisture': request.form.get('moisture'),
+        'covercrop': request.form.get('covercrop'),
+        'traffic': request.form.get('traffic')
+    }
+
+    return encodeData(data)
+
+# Format data for second model
+def formatSecondTreatmentsData(request):
+    data = {
+        'prep': request.form.get('prep'),
+        'pressure': request.form.get('pressure'),
+        'moisture': request.form.get('moisture'),
+        'covercrop': request.form.get('covercrop'),
+        'traffic': request.form.get('traffic')
+    }
+
+    data[request.form.get('changed_attribute')] = request.form.get('changed_val')
+    
+    return encodeData(data)
