@@ -45,15 +45,22 @@ for index, row in treatment_definitions.iterrows():
     else:
         df_2021.at[index, 'covercrop'] = 1
 
+# Setting targets
 y = df_2021['Combine Yield (t/ac)']
 y = y.fillna(0)
 del df_2021['Combine Yield (t/ac)']
 
+emergenceY = df_2021['Emergence']
+emergenceY = emergenceY.fillna(0)
+del df_2021['Emergence']
+
+# Setting inputs
 X = df_2021[['ploughed', 'tilled', 'high pressure', 'low pressure', 'high moisture', 'low moisture', 'covercrop', 'no covercrop', 'high traffic', 'low traffic']]
 X = X.fillna(0)
 
 # Splitting data for training & testing
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=42)
+X_train_emergence, X_test_emergence, y_train_emergence, y_test_emergence = train_test_split(X, emergenceY, test_size=0.33, random_state=42) # Emergence
 
 def regYield(data):
     reg = LinearRegression().fit(X_train, y_train)
@@ -61,6 +68,6 @@ def regYield(data):
     return reg.predict(data)
 
 def regEmergence(data):
-    reg = LinearRegression().fit(X_train, y_train)
+    regEmergence = LinearRegression().fit(X_train_emergence, y_train_emergence)
 
-    return reg.predict(data)
+    return regEmergence.predict(data)
