@@ -18,26 +18,10 @@ def hello_world():
 @app.route("/treatments", methods=['POST'])
 def treatments():
     inp = formatTreatmentsData(request);
-    
-    # Test data
-    plot36 = np.array([[1.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 1.0, 1.0, 0.0]])
-    plot55 = np.array([[0.0, 1.0, 0.0, 1.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0]])
-
-    print('inp')
-    print(inp)
 
     # Models
     yieldResult = regYield(np.array([inp]))
     emergenceResult = regEmergence(np.array([inp]))
-    
-    print(json.dumps({
-        'success': True,
-        'data': {
-            'model': 'treatments',
-            'yield': yieldResult[0],
-            'emergence': emergenceResult[0]
-        }
-    }))
 
     return json.dumps({
         'model': 'treatments',
@@ -54,11 +38,6 @@ def treatments():
 def treatmentsCompare():
     inp = formatTreatmentsData(request);
     secondInp = formatSecondTreatmentsData(request);
-
-    print("inp")
-    print(inp)
-    print("secondInp")
-    print(secondInp)
 
     # Models
     yieldResult = regYield(np.array([inp]))
