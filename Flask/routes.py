@@ -72,12 +72,12 @@ def treatmentsCompare():
         'yield': {
             'result': yieldResult[0],
             'result2': secondYieldResult[0],
-            'difference': (((yieldResult[0] - secondYieldResult[0]) / yieldResult[0]) * 100)
+            'difference': (((secondYieldResult[0] - yieldResult[0]) / yieldResult[0]) * 100)
         },
         'emergence': {
             'result': emergenceResult[0],
             'result2': secondEmergenceResult[0],
-            'difference': (((emergenceResult[0] - secondEmergenceResult[0]) / emergenceResult[0]) * 100)
+            'difference': (((secondEmergenceResult[0] - emergenceResult[0]) / emergenceResult[0]) * 100)
         }
     })
 
