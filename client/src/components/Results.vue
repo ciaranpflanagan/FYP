@@ -21,7 +21,8 @@ export default {
          * Returns predicted yield from models
          */
         predicted_yield() {
-            let predictedYield = this.$store.state.models.predictedYield;
+            // console.log(this.$store.state.models);
+            let predictedYield = this.$store.state.models.yield.result;
 
             return (predictedYield === 0) ? 0 : predictedYield.toPrecision(6);
         },
@@ -30,7 +31,7 @@ export default {
          * Returns predicted emergence from models
          */
         predicted_emergence () {
-            let emergence = this.$store.state.models.predictedEmergence;
+            let emergence = this.$store.state.models.emergence.result;
 
             return (emergence === 0) ? 0 : emergence.toPrecision(6);
         }

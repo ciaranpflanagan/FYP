@@ -8,12 +8,12 @@ export const mutations: MutationTree<ModelState> = {
      * @param payload 
      */
     setResults(state, payload) {
-        state.predictedYield = payload.yield;
-        state.predictedEmergence = payload.emergence;
+        state.yield.result = payload.yield.result;
+        state.emergence.result = payload.emergence.result;
 
         // Resetting differences
-        state.yieldDiff = 0;
-        state.emergenceDiff = 0;
+        state.yield.diff = 0;
+        state.emergence.diff = 0;
     },
 
     /**
@@ -22,12 +22,14 @@ export const mutations: MutationTree<ModelState> = {
      * @param payload 
      */
     setComparisonResults(state, payload) {
-        state.predictedYield = payload.yield.result;
-        state.predictedEmergence = payload.emergence.result;
+        state.yield.result = payload.yield.result;
+        state.yield.result2 = payload.yield.result2;
+        state.emergence.result = payload.emergence.result;
+        state.emergence.result2 = payload.emergence.result2;
 
         // Resetting differences
-        state.yieldDiff = payload.yield.difference;
-        state.emergenceDiff = payload.emergence.difference;
+        state.yield.diff = payload.yield.difference;
+        state.emergence.diff = payload.emergence.difference;
     },
 
     /**
@@ -39,7 +41,12 @@ export const mutations: MutationTree<ModelState> = {
         state.model = payload; // Update model
 
         // Resetting results when model changed
-        state.predictedYield = 0;
-        state.predictedEmergence = 0;
+        state.yield.result = 0;
+        state.yield.result2 = 0;
+        state.yield.diff = 0;
+
+        state.emergence.result = 0;
+        state.emergence.result2 = 0;
+        state.emergence.diff = 0;
     }
 }

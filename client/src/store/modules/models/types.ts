@@ -1,9 +1,15 @@
 export interface ModelState {
     model: string,
-    predictedYield: number,
-    yieldDiff: number,
-    predictedEmergence: number,
-    emergenceDiff: number
+    yield: {
+        result: number,
+        result2?: number,
+        diff: number
+    },
+    emergence: {
+        result: number,
+        result2?: number,
+        diff: number
+    }
 }
 export interface treatmentsParams {
     prep: string,

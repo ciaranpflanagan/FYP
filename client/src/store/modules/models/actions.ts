@@ -50,7 +50,7 @@ export const actions: ActionTree<types.ModelState, RootState> = {
         }).then(data => data.json()).then(data => {
             console.log('loadCompareTreatments', data);
             
-            commit('setResults', data);
+            commit('setComparisonResults', data);
             return data;
         });
     },

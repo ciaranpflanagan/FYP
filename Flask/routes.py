@@ -39,7 +39,15 @@ def treatments():
         }
     }))
 
-    return json.dumps({'yield': yieldResult[0], 'emergence': emergenceResult[0]})
+    return json.dumps({
+        'model': 'treatments',
+        'yield': {
+            'result': yieldResult[0]
+        },
+        'emergence': {
+            'result': emergenceResult[0]
+        }
+    })
 
 # Endpoint for treatments model
 @app.route("/treatments/compare", methods=['POST'])
