@@ -133,8 +133,11 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-6 offset-md-3">
-                        <button @click="submit()" type="submit" class="btn btn-primary" style="width: 100%;" >Submit</button>
+                    <div class="col-md-3 offset-md-3">
+                        <button @click="submit()" type="submit" class="btn btn-primary" style="width: 100%;">Submit</button>
+                    </div>
+                    <div class="col-md-3">
+                        <button @click="reset()" type="submit" class="btn btn-danger" style="width: 100%;">Reset</button>
                     </div>
                 </div>
             </form>
@@ -197,6 +200,13 @@ export default {
                 case 'traffic':
                     return (this.traffic === 'high') ? 'low' : 'high';
             }
+        },
+
+        /**
+         * Resets predictions
+         */
+        reset() {
+            this.$store.commit('resetPredictions');
         }
     }
 }

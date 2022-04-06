@@ -48,5 +48,19 @@ export const mutations: MutationTree<ModelState> = {
         state.emergence.result = 0;
         state.emergence.result2 = 0;
         state.emergence.diff = 0;
+    },
+
+    /**
+     * Resets predictions
+     * @param state
+     */
+    resetPredictions(state) {
+        state.yield.result = 0;
+        state.yield.result2 = 0;
+        state.yield.diff = 0;
+
+        state.emergence.result = 0;
+        state.emergence.result2 = 0;
+        state.emergence.diff = 0;
     }
 }
