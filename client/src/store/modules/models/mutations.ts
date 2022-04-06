@@ -10,6 +10,24 @@ export const mutations: MutationTree<ModelState> = {
     setResults(state, payload) {
         state.predictedYield = payload.yield;
         state.predictedEmergence = payload.emergence;
+
+        // Resetting differences
+        state.yieldDiff = 0;
+        state.emergenceDiff = 0;
+    },
+
+    /**
+     * Sets predicted values from models and their difference
+     * @param state 
+     * @param payload 
+     */
+    setComparisonResults(state, payload) {
+        state.predictedYield = payload.yield.result;
+        state.predictedEmergence = payload.emergence.result;
+
+        // Resetting differences
+        state.yieldDiff = payload.yield.difference;
+        state.emergenceDiff = payload.emergence.difference;
     },
 
     /**
