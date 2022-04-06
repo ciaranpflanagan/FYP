@@ -21,6 +21,14 @@
                                     Tilled
                                 </label>
                             </div>
+
+                            <!-- Compare Checkbox -->
+                            <div class="form-check compare-attribute mt-2">
+                                <input v-model="comparedAttVal" class="form-check-input" type="radio" value="prep" id="compareVal">
+                                <label class="form-check-label" for="comparePrepCheck">
+                                    Compare?
+                                </label>
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-2">
@@ -36,6 +44,14 @@
                                 <input v-model="pressure" class="form-check-input" type="radio" value="low" name="pressure" id="low_pressure">
                                 <label class="form-check-label" for="low_pressure">
                                     Low
+                                </label>
+                            </div>
+
+                            <!-- Compare Checkbox -->
+                            <div class="form-check compare-attribute mt-2">
+                                <input v-model="comparedAttVal" class="form-check-input" type="radio" value="pressure" id="compareVal">
+                                <label class="form-check-label" for="comparePressureCheck">
+                                    Compare?
                                 </label>
                             </div>
                         </div>
@@ -55,6 +71,14 @@
                                     Low
                                 </label>
                             </div>
+
+                            <!-- Compare Checkbox -->
+                            <div class="form-check compare-attribute mt-2">
+                                <input v-model="comparedAttVal" class="form-check-input" type="radio" value="moisture" id="compareVal">
+                                <label class="form-check-label" for="comparePressureCheck">
+                                    Compare?
+                                </label>
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-2">
@@ -72,6 +96,14 @@
                                     No
                                 </label>
                             </div>
+
+                            <!-- Compare Checkbox -->
+                            <div class="form-check compare-attribute mt-2">
+                                <input v-model="comparedAttVal" class="form-check-input" type="radio" value="covercrop" id="compareVal">
+                                <label class="form-check-label" for="comparePressureCheck">
+                                    Compare?
+                                </label>
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-2">
@@ -87,6 +119,14 @@
                                 <input v-model="traffic" class="form-check-input" type="radio" value="low" name="traffic" id="low_traffic">
                                 <label class="form-check-label" for="low_traffic">
                                     Low
+                                </label>
+                            </div>
+
+                            <!-- Compare Checkbox -->
+                            <div class="form-check compare-attribute mt-2">
+                                <input v-model="comparedAttVal" class="form-check-input" type="radio" value="traffic" id="compareVal">
+                                <label class="form-check-label" for="comparePressureCheck">
+                                    Compare?
                                 </label>
                             </div>
                         </div>
@@ -111,7 +151,8 @@ export default {
             pressure: 'high',
             moisture: 'high',
             covercrop: 'no',
-            traffic: 'high'
+            traffic: 'high',
+            comparedAttVal: null
         }
     },
     methods: {
@@ -119,18 +160,53 @@ export default {
          * Dispatches vuex action to get data from models
          */
         submit() {
-            this.$store.dispatch('loadTreatments', {
-                prep: this.prep,
-                pressure: this.pressure,
-                moisture: this.moisture,
-                covercrop: this.covercrop,
-                traffic: this.traffic
-            });
+            if (this.comparedAttVal === null) {
+                this.$store.dispatch('loadTreatments', {
+                    prep: this.prep,
+                    pressure: this.pressure,
+                    moisture: this.moisture,
+                    covercrop: this.covercrop,
+                    traffic: this.traffic
+                });
+            } else {
+                this.$store.dispatch('loadCompareTreatments', {
+                    prep: this.prep,
+                    pressure: this.pressure,
+                    moisture: this.moisture,
+                    covercrop: this.covercrop,
+                    traffic: this.traffic,
+                    changed_attribute: this.comparedAttVal,
+                    changed_val: this.getComparisonVal()
+                });
+            }
+        },
+
+        /**
+         * Returns the compared value, opposite value in binary attribute
+         */
+        getComparisonVal() {
+            switch (this.comparedAttVal) {
+                case 'prep':
+                    return (this.prep === 'ploughed') ? 'tilled' : 'ploughed';
+                case 'pressure':
+                    return (this.pressure === 'high') ? 'low' : 'high';
+                case 'moisture':
+                    return (this.moisture === 'high') ? 'low' : 'high';
+                case 'covercrop':
+                    return (this.covercrop === 'no') ? 'yes' : 'no';
+                case 'traffic':
+                    return (this.traffic === 'high') ? 'low' : 'high';
+            }
         }
     }
 }
 </script>
 
-<style>
-
+<style computed>
+.compare-attribute {
+    font-size: .8em;
+    color: #0d6efd;
+    font-weight: 600;
+    cursor: pointer;
+}
 </style>
