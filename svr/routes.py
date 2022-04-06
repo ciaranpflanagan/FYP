@@ -12,7 +12,7 @@ import numpy as np
 # Index
 @app.route("/")
 def hello_world():
-    return "<p>Flask Linear Regression Models</p>"
+    return "<p>Flask SVR Models</p>"
 
 # Endpoint for treatments model
 @app.route("/treatments", methods=['POST'])
