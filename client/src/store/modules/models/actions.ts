@@ -1,35 +1,14 @@
 import { RootState } from "@/store/types";
 import { ActionTree } from "vuex";
-import { ModelState } from "./types";
+import * as types from "./types";
 
-interface treatmentsParams {
-    prep: string,
-    pressure: string,
-    moisture: string,
-    covercrop: string,
-    traffic: string
-}
-interface moistureParams {
-    low: number,
-    mid: number,
-    high: number
-}
-interface bdMoistureParams {
-    lowMoisture: number,
-    midMoisture: number,
-    highMoisture: number,
-    lowDensity: number,
-    midDensity: number,
-    highDensity: number
-}
-
-export const actions: ActionTree<ModelState, RootState> = {
+export const actions: ActionTree<types.ModelState, RootState> = {
     /**
      * Loads results from treatment models based on data passed
      * @param payload 
      * @returns 
      */
-    loadTreatments ({ commit }, payload: treatmentsParams): any {
+    loadTreatments ({ commit }, payload: types.treatmentsParams): any {
         const formData = new FormData();
 
         formData.append('prep', payload.prep);
@@ -50,11 +29,38 @@ export const actions: ActionTree<ModelState, RootState> = {
     },
 
     /**
+     * Loads compared results from treatment models
+     * @param payload 
+     * @returns 
+     */
+    loadCompareTreatments ({ commit }, payload: types.treatmentsCompareParams): any {
+        const formData = new FormData();
+
+        formData.append('prep', payload.prep);
+        formData.append('pressure', payload.pressure);
+        formData.append('moisture', payload.moisture);
+        formData.append('covercrop', payload.covercrop);
+        formData.append('traffic', payload.traffic);
+        formData.append('changed_attribute', payload.changed_attribute);
+        formData.append('changed_val', payload.changed_val);
+        
+        return fetch('http://127.0.0.1:5001/treatments/compare', {
+            method: 'POST',
+            body: formData
+        }).then(data => data.json()).then(data => {
+            console.log('loadCompareTreatments', data);
+            
+            commit('setComparisonResults', data);
+            return data;
+        });
+    },
+
+    /**
      * Loads results from moisture % models based on data passed
      * @param payload 
      * @returns 
      */
-    loadMoisturePercentage ({ commit }, payload: moistureParams): any {
+    loadMoisturePercentage ({ commit }, payload: types.moistureParams): any {
         const formData = new FormData();
 
         formData.append('low', JSON.stringify(payload.low));
@@ -77,7 +83,7 @@ export const actions: ActionTree<ModelState, RootState> = {
      * @param payload 
      * @returns 
      */
-    loadBDMoisture ({ commit }, payload: bdMoistureParams): any {
+    loadBDMoisture ({ commit }, payload: types.bdMoistureParams): any {
         const formData = new FormData();
 
         formData.append('lowMoisture', JSON.stringify(payload.lowMoisture));

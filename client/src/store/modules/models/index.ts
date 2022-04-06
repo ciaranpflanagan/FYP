@@ -6,8 +6,16 @@ import { ModelState } from './types'
 
 const state: ModelState = {
     model: "treatments", // default model is "treatments"
-    predictedYield: 0,
-    predictedEmergence: 0
+    yield: {
+        result: 0,
+        result2: 0,
+        diff: 0
+    },
+    emergence: {
+        result: 0,
+        result2: 0,
+        diff: 0
+    }
 }
 
 export const models: Module<ModelState, RootState> = {
