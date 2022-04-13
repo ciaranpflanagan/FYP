@@ -161,7 +161,7 @@ export default {
          */
         submit() {
             if (this.comparedAttVal === null) {
-                this.$store.dispatch('loadTreatments', {
+                this.$store.dispatch('loadTreatmentsMoisture', {
                     prep: this.prep,
                     pressure: this.pressure,
                     moisture: this.moisture,
@@ -169,7 +169,7 @@ export default {
                     traffic: this.traffic
                 });
             } else {
-                this.$store.dispatch('loadCompareTreatments', {
+                this.$store.dispatch('loadCompareTreatmentsMoisture', {
                     prep: this.prep,
                     pressure: this.pressure,
                     moisture: this.moisture,
@@ -191,7 +191,7 @@ export default {
                 case 'pressure':
                     return (this.pressure === 'high') ? 'low' : 'high';
                 case 'moisture':
-                    return (this.moisture === 'high') ? 'low' : 'high';
+                    return this.comparedMoisture;
                 case 'covercrop':
                     return (this.covercrop === 'no') ? 'yes' : 'no';
                 case 'traffic':

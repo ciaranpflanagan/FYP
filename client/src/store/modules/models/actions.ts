@@ -56,6 +56,58 @@ export const actions: ActionTree<types.ModelState, RootState> = {
     },
 
     /**
+     * Loads results from treatment granular moisture models
+     * @param payload 
+     * @returns 
+     */
+    loadTreatmentsMoisture ({ commit }, payload: types.treatmentsParams): any {
+        const formData = new FormData();
+
+        formData.append('prep', payload.prep);
+        formData.append('pressure', payload.pressure);
+        formData.append('moisture', payload.moisture);
+        formData.append('covercrop', payload.covercrop);
+        formData.append('traffic', payload.traffic);
+        
+        return fetch('http://127.0.0.1:5001/treatments-moisture', {
+            method: 'POST',
+            body: formData
+        }).then(data => data.json()).then(data => {
+            console.log('loadTreatmentsMoisture', data);
+            
+            commit('setResults', data);
+            return data;
+        });
+    },
+
+    /**
+     * Loads compared results from treatment granular moisture models
+     * @param payload 
+     * @returns 
+     */
+    loadCompareTreatmentsMoisture ({ commit }, payload: types.treatmentsCompareParams): any {
+        const formData = new FormData();
+
+        formData.append('prep', payload.prep);
+        formData.append('pressure', payload.pressure);
+        formData.append('moisture', payload.moisture);
+        formData.append('covercrop', payload.covercrop);
+        formData.append('traffic', payload.traffic);
+        formData.append('changed_attribute', payload.changed_attribute);
+        formData.append('changed_val', payload.changed_val);
+        
+        return fetch('http://127.0.0.1:5001/treatments-moisture/compare', {
+            method: 'POST',
+            body: formData
+        }).then(data => data.json()).then(data => {
+            console.log('loadCompareTreatmentsMoisture', data);
+            
+            commit('setComparisonResults', data);
+            return data;
+        });
+    },
+
+    /**
      * Loads results from moisture % models based on data passed
      * @param payload 
      * @returns 
