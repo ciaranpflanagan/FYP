@@ -22,8 +22,9 @@ export default {
         return {
             models: [
                 {id: 1, name: 'Soil Treatments', model: 'treatments'},
-                {id: 2, name: 'Moisture Percentage', model: 'moisture_percentage'},
-                {id: 3, name: 'Bulk Density & Moisture', model: 'bd_moisture'}
+                {id: 2, name: 'Soil Treatments with Granular Moisture', model: 'treatments_moisture'},
+                {id: 3, name: 'Moisture Percentage', model: 'moisture_percentage'},
+                {id: 4, name: 'Bulk Density & Moisture', model: 'bd_moisture'}
             ]
         }
     },
