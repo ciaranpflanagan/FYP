@@ -45,6 +45,10 @@ for index, row in treatment_definitions.iterrows():
     else:
         df_2021.at[index, 'covercrop'] = 1
 
+# Getting average moisture
+average_moisture = df_2021[['BD Moisture 0-10cm', 'BD Moisture 10-20 cm', 'BD Moisture 20-30 cm']].mean(axis=1)
+df_2021['average_moisture'] = average_moisture
+
 # Setting targets
 y = df_2021['Combine Yield (t/ac)']
 y = y.fillna(0)
@@ -55,8 +59,9 @@ emergenceY = emergenceY.fillna(0)
 del df_2021['Emergence']
 
 # Setting inputs
-X = df_2021[['ploughed', 'tilled', 'high pressure', 'low pressure', 'high moisture', 'low moisture', 'covercrop', 'no covercrop', 'high traffic', 'low traffic']]
+X = df_2021[['ploughed', 'tilled', 'high pressure', 'low pressure', 'covercrop', 'no covercrop', 'high traffic', 'low traffic', 'average_moisture']]
 X = X.fillna(0)
+X['average_moisture'] = (X['average_moisture'] - X['average_moisture'].min()) / (X['average_moisture'].max() - X['average_moisture'].min())
 
 # Splitting data for training & testing
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=42)

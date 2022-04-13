@@ -7,7 +7,9 @@ import json
 from models.treatments import Treatments
 from models.treatments_moisture import TreatmentsMoisture
 
-from helpers.format import formatTreatmentsData, formatSecondTreatmentsData
+# Helpers
+from helpers.treatmentsFormat import TreatmentsFormat
+from helpers.treatmentsMoistureFormat import TreatmentsMoistureFormat
 import numpy as np
 
 # Index
@@ -18,7 +20,7 @@ def hello_world():
 # Endpoint for treatments model
 @app.route("/treatments", methods=['POST'])
 def treatments():
-    inp = formatTreatmentsData(request);
+    inp = TreatmentsFormat.formatTreatmentsData(request);
 
     # Models
     yieldResult = Treatments.regYield(np.array([inp]))
@@ -37,8 +39,8 @@ def treatments():
 # Endpoint for treatments model
 @app.route("/treatments/compare", methods=['POST'])
 def treatmentsCompare():
-    inp = formatTreatmentsData(request);
-    secondInp = formatSecondTreatmentsData(request);
+    inp = TreatmentsFormat.formatTreatmentsData(request);
+    secondInp = TreatmentsFormat.formatSecondTreatmentsData(request);
 
     # Models
     yieldResult = Treatments.regYield(np.array([inp]))
@@ -63,8 +65,10 @@ def treatmentsCompare():
 
 # Endpoint for treatments moisture model
 @app.route("/treatments-moisture", methods=['POST'])
-def treatments():
-    inp = formatTreatmentsData(request);
+def treatmentsMoisture():
+    inp = TreatmentsMoistureFormat.formatTreatmentsData(request);
+    print('inp')
+    print(inp)
 
     # Models
     yieldResult = TreatmentsMoisture.regYield(np.array([inp]))
@@ -81,10 +85,10 @@ def treatments():
     })
 
 # Endpoint for the treatments moisture model comparison
-@app.route("/treatments/compare", methods=['POST'])
-def treatmentsCompare():
-    inp = formatTreatmentsData(request);
-    secondInp = formatSecondTreatmentsData(request);
+@app.route("/treatments-moisture/compare", methods=['POST'])
+def treatmentsMoistureCompare():
+    inp = TreatmentsMoistureFormat.formatTreatmentsData(request);
+    secondInp = TreatmentsMoistureFormat.formatSecondTreatmentsData(request);
 
     # Models
     yieldResult = TreatmentsMoisture.regYield(np.array([inp]))
