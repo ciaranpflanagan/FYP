@@ -5,9 +5,10 @@
         </section>
 
         <section class="container">
-            <BDMoisture v-if="model === 'bd_moisture'" />
-            <MoisturePercentage v-if="model === 'moisture_percentage'" />
             <Treatments v-if="model === 'treatments'" />
+            <TreatmentsMoisture v-if="model === 'treatments_moisture'" />
+            <MoisturePercentage v-if="model === 'moisture_percentage'" />
+            <BDMoisture v-if="model === 'bd_moisture'" />
         </section>
 
         <section class="container mt-4">
@@ -18,14 +19,15 @@
 
 <script>
 import ModelSelect from './../components/ModelSelect.vue'
-import BDMoisture from './../components/models/BDMoisture.vue'
-import MoisturePercentage from './../components/models/MoisturePercentage.vue'
 import Treatments from './../components/models/Treatments.vue'
+import TreatmentsMoisture from './../components/models/TreatmentsMoisture.vue'
+import MoisturePercentage from './../components/models/MoisturePercentage.vue'
+import BDMoisture from './../components/models/BDMoisture.vue'
 import Results from './../components/Results.vue'
 
 export default {
     name: 'Model',
-    components: { ModelSelect, BDMoisture, MoisturePercentage, Treatments, Results },
+    components: { ModelSelect, Treatments, TreatmentsMoisture, MoisturePercentage, BDMoisture, Results },
     computed: {
         /**
          * Returns the current active model
@@ -36,7 +38,3 @@ export default {
     }
 }
 </script>
-
-<style scoped>
-
-</style>
