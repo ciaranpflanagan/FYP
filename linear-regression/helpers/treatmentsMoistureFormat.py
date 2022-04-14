@@ -18,10 +18,6 @@ def encodeData(data):
         inp.append(0.0)
         inp.append(1.0)
 
-    # Moisture
-    if (data['moisture']):
-        inp.append(int(data['moisture']))
-
     # Covercrop
     if (data['covercrop'] == 'yes'):
         inp.append(1.0)
@@ -37,6 +33,10 @@ def encodeData(data):
     else:
         inp.append(0.0)
         inp.append(1.0)
+
+    # Moisture
+    if (data['moisture']):
+        inp.append(float(data['moisture']) / 31.46666666666667) # Dividing by 31.46666666666667 scales value
 
     return inp
 
