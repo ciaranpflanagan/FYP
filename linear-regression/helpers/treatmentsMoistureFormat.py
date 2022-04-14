@@ -36,7 +36,9 @@ def encodeData(data):
 
     # Moisture
     if (data['moisture']):
-        inp.append(float(data['moisture']) / 31.46666666666667) # Dividing by 31.46666666666667 scales value
+        # Dividing by 31.46666666666667 scales value
+        # NOTE: if data changes here this value will need to be updated, need a dynamic way of doing this
+        inp.append(float(data['moisture']) / 31.46666666666667)
 
     return inp
 
