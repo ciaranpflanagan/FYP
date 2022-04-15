@@ -47,6 +47,13 @@ def encodeData(data):
 class TreatmentsFormat:
     # Format data for first model
     def formatTreatmentsData(request):
+        # Checking all request params exist
+        if (request.form.get('prep') is None
+            or request.form.get('pressure') is None
+            or request.form.get('moisture') is None
+            or request.form.get('covercrop') is None
+            or request.form.get('traffic') is None): return False
+
         data = {
             'prep': request.form.get('prep'),
             'pressure': request.form.get('pressure'),
@@ -59,6 +66,15 @@ class TreatmentsFormat:
 
     # Format data for second model
     def formatSecondTreatmentsData(request):
+        # Checking all request params exist
+        if (request.form.get('prep') is None
+            or request.form.get('pressure') is None
+            or request.form.get('moisture') is None
+            or request.form.get('covercrop') is None
+            or request.form.get('traffic') is None
+            or request.form.get('changed_attribute') is None
+            or request.form.get('changed_val') is None): return False
+            
         data = {
             'prep': request.form.get('prep'),
             'pressure': request.form.get('pressure'),

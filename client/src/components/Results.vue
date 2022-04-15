@@ -39,7 +39,6 @@ export default {
          * Returns predicted yield from models
          */
         predicted_yield() {
-            // console.log(this.$store.state.models);
             let predictedYield = this.$store.state.models.yield.result;
 
             return (predictedYield === 0) ? 0 : predictedYield.toPrecision(6);
@@ -49,7 +48,6 @@ export default {
          * Returns the second predicted yield from models
          */
         predicted_second_yield() {
-            // console.log(this.$store.state.models);
             let predictedYield = this.$store.state.models.yield.result2;
 
             return (predictedYield === 0) ? 0 : predictedYield.toPrecision(6);
